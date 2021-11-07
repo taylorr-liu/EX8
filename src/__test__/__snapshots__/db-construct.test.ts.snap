@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`db-construct 1`] = `
+Object {
+  "Resources": Object {
+    "testItemTable0E29024D": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "AttributeDefinitions": Array [
+          Object {
+            "AttributeName": "itemId",
+            "AttributeType": "S",
+          },
+        ],
+        "KeySchema": Array [
+          Object {
+            "AttributeName": "itemId",
+            "KeyType": "HASH",
+          },
+        ],
+        "ProvisionedThroughput": Object {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5,
+        },
+        "TableName": "items",
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Delete",
+    },
+  },
+}
+`;

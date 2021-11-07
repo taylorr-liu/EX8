@@ -1,0 +1,3059 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`api-construct-specific 1`] = `
+Object {
+  "Outputs": Object {
+    "APIConstruct0Endpoint627D8C12": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct0920A997B",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Resources": Object {
+    "APIConstruct0920A997B": Object {
+      "Properties": Object {
+        "Name": "APIConstruct0",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct0Account82E09E84": Object {
+      "DependsOn": Array [
+        "APIConstruct0920A997B",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0CloudWatchRole32224633",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct0CloudWatchRole32224633": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c": Object {
+      "DependsOn": Array [
+        "APIConstruct0itemsid0D175E28",
+        "APIConstruct0itemsGET8F588D49",
+        "APIConstruct0itemsC29E83DE",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct0DeploymentStageprod4D403AFA": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct0itemsC29E83DE": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0920A997B",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct0itemsGET8F588D49": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct0itemsGETApiPermissionTeststackAPIConstruct0E317A06DGETitemsB12B7211": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/test-invoke-stage/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsGETApiPermissionstackAPIConstruct0E317A06DGETitems3FFD1A92": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+              },
+              "/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsid0D175E28": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "testFuncB346065B": Object {
+      "DependsOn": Array [
+        "testFuncServiceRole67735AD9",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "ZipFile": "
+      export async function handler() {
+        return {
+          statusCode: 200,
+          body: \\"\\"
+        };
+      }
+    ",
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "testFuncServiceRole67735AD9",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "testFuncServiceRole67735AD9": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+}
+`;
+
+exports[`api-construct-specific 2`] = `
+Object {
+  "Outputs": Object {
+    "APIConstruct0Endpoint627D8C12": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct0920A997B",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Resources": Object {
+    "APIConstruct0920A997B": Object {
+      "Properties": Object {
+        "Name": "APIConstruct0",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct0Account82E09E84": Object {
+      "DependsOn": Array [
+        "APIConstruct0920A997B",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0CloudWatchRole32224633",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct0CloudWatchRole32224633": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c": Object {
+      "DependsOn": Array [
+        "APIConstruct0itemsid0D175E28",
+        "APIConstruct0itemsGET8F588D49",
+        "APIConstruct0itemsC29E83DE",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct0DeploymentStageprod4D403AFA": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct0itemsC29E83DE": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0920A997B",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct0itemsGET8F588D49": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct0itemsGETApiPermissionTeststackAPIConstruct0E317A06DGETitemsB12B7211": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/test-invoke-stage/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsGETApiPermissionstackAPIConstruct0E317A06DGETitems3FFD1A92": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+              },
+              "/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsid0D175E28": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "testFuncB346065B": Object {
+      "DependsOn": Array [
+        "testFuncServiceRole67735AD9",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "ZipFile": "
+      export async function handler() {
+        return {
+          statusCode: 200,
+          body: \\"\\"
+        };
+      }
+    ",
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "testFuncServiceRole67735AD9",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "testFuncServiceRole67735AD9": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+}
+`;
+
+exports[`api-construct-specific 3`] = `
+Object {
+  "Outputs": Object {
+    "APIConstruct0Endpoint627D8C12": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct0920A997B",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "APIConstruct1EndpointFD22893B": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct133930038",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct1DeploymentStageprod22C12E1B",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Resources": Object {
+    "APIConstruct0920A997B": Object {
+      "Properties": Object {
+        "Name": "APIConstruct0",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct0Account82E09E84": Object {
+      "DependsOn": Array [
+        "APIConstruct0920A997B",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0CloudWatchRole32224633",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct0CloudWatchRole32224633": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c": Object {
+      "DependsOn": Array [
+        "APIConstruct0itemsid0D175E28",
+        "APIConstruct0itemsGET8F588D49",
+        "APIConstruct0itemsC29E83DE",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct0DeploymentStageprod4D403AFA": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct0itemsC29E83DE": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0920A997B",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct0itemsGET8F588D49": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct0itemsGETApiPermissionTeststackAPIConstruct0E317A06DGETitemsB12B7211": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/test-invoke-stage/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsGETApiPermissionstackAPIConstruct0E317A06DGETitems3FFD1A92": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+              },
+              "/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsid0D175E28": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct133930038": Object {
+      "Properties": Object {
+        "Name": "APIConstruct1",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct1AccountF67D7BD3": Object {
+      "DependsOn": Array [
+        "APIConstruct133930038",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct1CloudWatchRoleA2913C54",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct1CloudWatchRoleA2913C54": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct1DeploymentA6DD01036d57a358ec31e4dfacb890baf8dba16b": Object {
+      "DependsOn": Array [
+        "APIConstruct1itemsid350C8D44",
+        "APIConstruct1itemsPOSTEDDE3054",
+        "APIConstruct1items17FEAB03",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct1DeploymentStageprod22C12E1B": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct1DeploymentA6DD01036d57a358ec31e4dfacb890baf8dba16b",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct1items17FEAB03": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct133930038",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct1itemsPOSTApiPermissionTeststackAPIConstruct13348CDEEPOSTitemsE0657EB6": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct133930038",
+              },
+              "/test-invoke-stage/POST/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct1itemsPOSTApiPermissionstackAPIConstruct13348CDEEPOSTitems3706F539": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct133930038",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct1DeploymentStageprod22C12E1B",
+              },
+              "/POST/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct1itemsPOSTEDDE3054": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "POST",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct1items17FEAB03",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct1itemsid350C8D44": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct1items17FEAB03",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "testFuncB346065B": Object {
+      "DependsOn": Array [
+        "testFuncServiceRole67735AD9",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "ZipFile": "
+      export async function handler() {
+        return {
+          statusCode: 200,
+          body: \\"\\"
+        };
+      }
+    ",
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "testFuncServiceRole67735AD9",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "testFuncServiceRole67735AD9": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+}
+`;
+
+exports[`api-construct-specific 4`] = `
+Object {
+  "Outputs": Object {
+    "APIConstruct0Endpoint627D8C12": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct0920A997B",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "APIConstruct1EndpointFD22893B": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct133930038",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct1DeploymentStageprod22C12E1B",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "APIConstruct2Endpoint322BF33C": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct217362FFF",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct2DeploymentStageprod2232479F",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Resources": Object {
+    "APIConstruct0920A997B": Object {
+      "Properties": Object {
+        "Name": "APIConstruct0",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct0Account82E09E84": Object {
+      "DependsOn": Array [
+        "APIConstruct0920A997B",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0CloudWatchRole32224633",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct0CloudWatchRole32224633": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c": Object {
+      "DependsOn": Array [
+        "APIConstruct0itemsid0D175E28",
+        "APIConstruct0itemsGET8F588D49",
+        "APIConstruct0itemsC29E83DE",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct0DeploymentStageprod4D403AFA": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct0itemsC29E83DE": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0920A997B",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct0itemsGET8F588D49": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct0itemsGETApiPermissionTeststackAPIConstruct0E317A06DGETitemsB12B7211": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/test-invoke-stage/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsGETApiPermissionstackAPIConstruct0E317A06DGETitems3FFD1A92": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+              },
+              "/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsid0D175E28": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct133930038": Object {
+      "Properties": Object {
+        "Name": "APIConstruct1",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct1AccountF67D7BD3": Object {
+      "DependsOn": Array [
+        "APIConstruct133930038",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct1CloudWatchRoleA2913C54",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct1CloudWatchRoleA2913C54": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct1DeploymentA6DD01036d57a358ec31e4dfacb890baf8dba16b": Object {
+      "DependsOn": Array [
+        "APIConstruct1itemsid350C8D44",
+        "APIConstruct1itemsPOSTEDDE3054",
+        "APIConstruct1items17FEAB03",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct1DeploymentStageprod22C12E1B": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct1DeploymentA6DD01036d57a358ec31e4dfacb890baf8dba16b",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct1items17FEAB03": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct133930038",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct1itemsPOSTApiPermissionTeststackAPIConstruct13348CDEEPOSTitemsE0657EB6": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct133930038",
+              },
+              "/test-invoke-stage/POST/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct1itemsPOSTApiPermissionstackAPIConstruct13348CDEEPOSTitems3706F539": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct133930038",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct1DeploymentStageprod22C12E1B",
+              },
+              "/POST/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct1itemsPOSTEDDE3054": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "POST",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct1items17FEAB03",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct1itemsid350C8D44": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct1items17FEAB03",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct217362FFF": Object {
+      "Properties": Object {
+        "Name": "APIConstruct2",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct2Account5036B210": Object {
+      "DependsOn": Array [
+        "APIConstruct217362FFF",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct2CloudWatchRole609E0D8B",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct2CloudWatchRole609E0D8B": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct2DeploymentA32664556485471336abffde8126cabe5044e7c9": Object {
+      "DependsOn": Array [
+        "APIConstruct2itemsid5E202228",
+        "APIConstruct2itemsPUT04F6E416",
+        "APIConstruct2itemsEEFB0928",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct2DeploymentStageprod2232479F": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct2DeploymentA32664556485471336abffde8126cabe5044e7c9",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct2itemsEEFB0928": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct217362FFF",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct2itemsPUT04F6E416": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "PUT",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct2itemsEEFB0928",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct2itemsPUTApiPermissionTeststackAPIConstruct2C7C3B09BPUTitems544370E1": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct217362FFF",
+              },
+              "/test-invoke-stage/PUT/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct2itemsPUTApiPermissionstackAPIConstruct2C7C3B09BPUTitems2BE37B6F": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct217362FFF",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct2DeploymentStageprod2232479F",
+              },
+              "/PUT/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct2itemsid5E202228": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct2itemsEEFB0928",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "testFuncB346065B": Object {
+      "DependsOn": Array [
+        "testFuncServiceRole67735AD9",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "ZipFile": "
+      export async function handler() {
+        return {
+          statusCode: 200,
+          body: \\"\\"
+        };
+      }
+    ",
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "testFuncServiceRole67735AD9",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "testFuncServiceRole67735AD9": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+}
+`;
+
+exports[`api-construct-specific 5`] = `
+Object {
+  "Outputs": Object {
+    "APIConstruct0Endpoint627D8C12": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct0920A997B",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "APIConstruct1EndpointFD22893B": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct133930038",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct1DeploymentStageprod22C12E1B",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "APIConstruct2Endpoint322BF33C": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct217362FFF",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct2DeploymentStageprod2232479F",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "APIConstruct3Endpoint6A75BA2D": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "https://",
+            Object {
+              "Ref": "APIConstruct3AE4C510B",
+            },
+            ".execute-api.",
+            Object {
+              "Ref": "AWS::Region",
+            },
+            ".",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            Object {
+              "Ref": "APIConstruct3DeploymentStageprod9BAD4A6B",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Resources": Object {
+    "APIConstruct0920A997B": Object {
+      "Properties": Object {
+        "Name": "APIConstruct0",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct0Account82E09E84": Object {
+      "DependsOn": Array [
+        "APIConstruct0920A997B",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0CloudWatchRole32224633",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct0CloudWatchRole32224633": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c": Object {
+      "DependsOn": Array [
+        "APIConstruct0itemsid0D175E28",
+        "APIConstruct0itemsGET8F588D49",
+        "APIConstruct0itemsC29E83DE",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct0DeploymentStageprod4D403AFA": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct0DeploymentBC3468764527023283ef0a91bcf0344480fed27c",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct0itemsC29E83DE": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct0920A997B",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct0itemsGET8F588D49": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct0itemsGETApiPermissionTeststackAPIConstruct0E317A06DGETitemsB12B7211": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/test-invoke-stage/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsGETApiPermissionstackAPIConstruct0E317A06DGETitems3FFD1A92": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct0920A997B",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct0DeploymentStageprod4D403AFA",
+              },
+              "/GET/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct0itemsid0D175E28": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct0itemsC29E83DE",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct0920A997B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct133930038": Object {
+      "Properties": Object {
+        "Name": "APIConstruct1",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct1AccountF67D7BD3": Object {
+      "DependsOn": Array [
+        "APIConstruct133930038",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct1CloudWatchRoleA2913C54",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct1CloudWatchRoleA2913C54": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct1DeploymentA6DD01036d57a358ec31e4dfacb890baf8dba16b": Object {
+      "DependsOn": Array [
+        "APIConstruct1itemsid350C8D44",
+        "APIConstruct1itemsPOSTEDDE3054",
+        "APIConstruct1items17FEAB03",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct1DeploymentStageprod22C12E1B": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct1DeploymentA6DD01036d57a358ec31e4dfacb890baf8dba16b",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct1items17FEAB03": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct133930038",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct1itemsPOSTApiPermissionTeststackAPIConstruct13348CDEEPOSTitemsE0657EB6": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct133930038",
+              },
+              "/test-invoke-stage/POST/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct1itemsPOSTApiPermissionstackAPIConstruct13348CDEEPOSTitems3706F539": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct133930038",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct1DeploymentStageprod22C12E1B",
+              },
+              "/POST/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct1itemsPOSTEDDE3054": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "POST",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct1items17FEAB03",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct1itemsid350C8D44": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct1items17FEAB03",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct133930038",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct217362FFF": Object {
+      "Properties": Object {
+        "Name": "APIConstruct2",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct2Account5036B210": Object {
+      "DependsOn": Array [
+        "APIConstruct217362FFF",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct2CloudWatchRole609E0D8B",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct2CloudWatchRole609E0D8B": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct2DeploymentA32664556485471336abffde8126cabe5044e7c9": Object {
+      "DependsOn": Array [
+        "APIConstruct2itemsid5E202228",
+        "APIConstruct2itemsPUT04F6E416",
+        "APIConstruct2itemsEEFB0928",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct2DeploymentStageprod2232479F": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct2DeploymentA32664556485471336abffde8126cabe5044e7c9",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct2itemsEEFB0928": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct217362FFF",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct2itemsPUT04F6E416": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "PUT",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct2itemsEEFB0928",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct2itemsPUTApiPermissionTeststackAPIConstruct2C7C3B09BPUTitems544370E1": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct217362FFF",
+              },
+              "/test-invoke-stage/PUT/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct2itemsPUTApiPermissionstackAPIConstruct2C7C3B09BPUTitems2BE37B6F": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct217362FFF",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct2DeploymentStageprod2232479F",
+              },
+              "/PUT/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct2itemsid5E202228": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct2itemsEEFB0928",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct217362FFF",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct3AE4C510B": Object {
+      "Properties": Object {
+        "Name": "APIConstruct3",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "APIConstruct3AccountD60DC1E4": Object {
+      "DependsOn": Array [
+        "APIConstruct3AE4C510B",
+      ],
+      "Properties": Object {
+        "CloudWatchRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct3CloudWatchRoleE555A35E",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+    },
+    "APIConstruct3CloudWatchRoleE555A35E": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "APIConstruct3Deployment41CB5E91e58756a827a1e073d30f1b189d58f52b": Object {
+      "DependsOn": Array [
+        "APIConstruct3itemsidC7261DE3",
+        "APIConstruct3itemsDELETE98D6D866",
+        "APIConstruct3items5BCC4818",
+      ],
+      "Properties": Object {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": Object {
+          "Ref": "APIConstruct3AE4C510B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "APIConstruct3DeploymentStageprod9BAD4A6B": Object {
+      "Properties": Object {
+        "DeploymentId": Object {
+          "Ref": "APIConstruct3Deployment41CB5E91e58756a827a1e073d30f1b189d58f52b",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct3AE4C510B",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "APIConstruct3items5BCC4818": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Fn::GetAtt": Array [
+            "APIConstruct3AE4C510B",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "items",
+        "RestApiId": Object {
+          "Ref": "APIConstruct3AE4C510B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "APIConstruct3itemsDELETE98D6D866": Object {
+      "Properties": Object {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "DELETE",
+        "Integration": Object {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:",
+                Object {
+                  "Ref": "AWS::Region",
+                },
+                ":lambda:path/2015-03-31/functions/",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "testFuncB346065B",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": Object {
+          "Ref": "APIConstruct3items5BCC4818",
+        },
+        "RestApiId": Object {
+          "Ref": "APIConstruct3AE4C510B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "APIConstruct3itemsDELETEApiPermissionTeststackAPIConstruct3A79F5F7BDELETEitemsA2C4F81E": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct3AE4C510B",
+              },
+              "/test-invoke-stage/DELETE/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct3itemsDELETEApiPermissionstackAPIConstruct3A79F5F7BDELETEitems8E31AC7D": Object {
+      "Properties": Object {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": Object {
+          "Fn::GetAtt": Array [
+            "testFuncB346065B",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:",
+              Object {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":",
+              Object {
+                "Ref": "APIConstruct3AE4C510B",
+              },
+              "/",
+              Object {
+                "Ref": "APIConstruct3DeploymentStageprod9BAD4A6B",
+              },
+              "/DELETE/items",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "APIConstruct3itemsidC7261DE3": Object {
+      "Properties": Object {
+        "ParentId": Object {
+          "Ref": "APIConstruct3items5BCC4818",
+        },
+        "PathPart": "{id}",
+        "RestApiId": Object {
+          "Ref": "APIConstruct3AE4C510B",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "testFuncB346065B": Object {
+      "DependsOn": Array [
+        "testFuncServiceRole67735AD9",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "ZipFile": "
+      export async function handler() {
+        return {
+          statusCode: 200,
+          body: \\"\\"
+        };
+      }
+    ",
+        },
+        "Handler": "index.handler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "testFuncServiceRole67735AD9",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "testFuncServiceRole67735AD9": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+}
+`;
